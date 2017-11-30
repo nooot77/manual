@@ -50,7 +50,11 @@
         "maiconpinto/cakephp-adminlte-theme": "^1.0",
         "ychapard/cakephp3-search": "dev-master",
         "friendsofcake/crud": "4.3",
-        "dereuromark/cakephp-shim": "^1.5"
+        "dereuromark/cakephp-shim": "^1.5",
+        "akkaweb/cakephp-ckeditor": "dev-master",
+        "cakecoded/ckeditor": "^1.0",
+        "drmonkeyninja/cakephp-font-awesome": "3.*"
+
     },
     "require-dev": {
         "psy\/psysh": "@stable",

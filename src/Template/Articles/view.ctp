@@ -42,6 +42,6 @@
     </table>
     <div class="row">
         <h4><?= __('Body') ?></h4>
-        <?= $this->Text->autoParagraph(h($article->body)); ?>
+        <?= $this->Text->autoParagraph(($article->body)); ?>
     </div>
 </div>

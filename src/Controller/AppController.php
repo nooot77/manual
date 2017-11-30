@@ -29,8 +29,13 @@ class AppController extends Controller
       'BootstrapUI.Form',
       'BootstrapUI.Html',
       'BootstrapUI.Flash',
-      'BootstrapUI.Paginator'
+      'BootstrapUI.Paginator',
+      'CkEditor.Ck',
+      'FontAwesome.Fa',
+
+
   ];
+
   public $components = [
      'Acl' => [
          'className' => 'Acl.Acl'
@@ -111,15 +116,26 @@ class AppController extends Controller
 
     public function beforeRender(Event $event)
     {
+          $this->loadModel('Users');
           $this->loadModel('Articles');
-          $this->paginate = [
-              'contain' => ['Categories']
-          ];
-          $articles = $this->paginate($this->Articles);
+          $this->loadModel('Categories');
+    //  $categories = $this->Categories->find('threaded')->toArray();
+     // $articles = $this->Articles->find('all');
+           // pr($categories);exit;
+           $this->paginate = [
+                'contain' => ['Categories']
+           ];
+
+
+
+  $articles = $this->paginate($this->Articles);
 
           $this->set(compact('articles'));
 
+          $this->set('_serialize', ['articles']);
 
+          // pr($articles);exit;
+          // pr($categories);exit;
         // Note: These defaults are just to get started quickly with development
         // and should not be used in production. You should instead set "_serialize"
         // in each action as required.
@@ -127,6 +143,15 @@ class AppController extends Controller
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {
             $this->set('_serialize', true);
+        }
+
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error('Your username or password is incorrect.');
         }
 //$this->viewBuilder()->theme('AdminLTE');
 //$this->set('theme', Configure::read('Theme'));

@@ -231,5 +231,7 @@ Plugin::load('Migrations');
 Plugin::load('HierAuth');
 Plugin::load('Acl', ['bootstrap' => true]);
 Plugin::load('AclManager', ['bootstrap' => true, 'routes' => true]);
-
-Plugin::load('Shim');
+Plugin::load('CkEditor');
+Plugin::load('Froala');
+Plugin::load('FontAwesome');
+Plugin::load('TreeHelper');

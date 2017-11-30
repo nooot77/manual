@@ -70,7 +70,7 @@
             <tr>
                 <td><?= h($articles->id) ?></td>
                 <td><?= h($articles->title) ?></td>
-                <td><?= h($articles->body) ?></td>
+                <td><?= ($articles->body) ?></td>
                 <td><?= h($articles->category_id) ?></td>
                 <td><?= h($articles->created) ?></td>
                 <td><?= h($articles->modified) ?></td>

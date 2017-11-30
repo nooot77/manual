@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Article $article
  */
 ?>
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -16,9 +17,14 @@
     <?= $this->Form->create($article) ?>
     <fieldset>
         <legend><?= __('Add Article') ?></legend>
+
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->control('body');
+
+
+            echo $this->Ck->input('body');
+
+
             echo $this->Form->control('category_id', ['options' => $categories]);
         ?>
     </fieldset>

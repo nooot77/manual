@@ -1,10 +1,11 @@
 <?php
 
-
+$isAuth=$this->request->session()->read('Auth.User.username');
 $cakeDescription = 'Classera Manual';
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -14,23 +15,27 @@ $cakeDescription = 'Classera Manual';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-
+<?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
 <?= $this->Html->css('bootstrap.css') ?>
-<?= $this->Html->css('sidebar.css') ?>
 
-    <?= $this->Html->css('cake.css') ?>
-      <?= $this->Html->css('bootstrap-treeview.css') ?>
-      <?= $this->Html->script('bootstrap-treeview.js')?>
-        <?= $this->Html->script('jQuery.js')?>
+<?= $this->Html->css('sidebar.css') ?>
+<?= $this->Html->css('cake.css') ?>
+
+
+
+      <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')?>
+
+
       <?= $this->Html->script('sidebar.js')?>
     <?= $this->Html->script('bootstrap.js')?>
 
   <!--  // $this->Html->css('base.css')  -->
 
-
+    <?php $this->fetch('fonts') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
 </head>
 
 <body>
@@ -52,8 +57,11 @@ $cakeDescription = 'Classera Manual';
     <a class="navbar-brand">
        <div class="classeraimg">
 
- <?php echo $this->Html->image('rsz_classera.png', ['alt' => 'Classera ']); ?>
 
+<?php echo $this->Html->image("classera_white.png", [
+    "alt" => "Classera",
+    'url' => ['controller' => 'Articles', 'action' => 'index']
+]); ?>
 
 
        </div>
@@ -67,12 +75,13 @@ $cakeDescription = 'Classera Manual';
     <!-- The drop down menu -->
     <ul class="nav navbar-nav navbar-right">
 
+
                                  <?php
 
-                                 if (is_null($this->request->session()->read('Auth.User.username'))) {
+                                 if (!$isAuth) {
                                  ?>
                                  <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="fa fa-sign-in " aria-hidden="true"></b></a>
                                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                                        <li>
                                           <div class="row">
@@ -80,7 +89,9 @@ $cakeDescription = 'Classera Manual';
                                  <div class="col-md-12">
                                    <?= $this->Form->create() ?>
                                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+
                                        <div class="form-group">
+
                                         <?= $this->Form->control('username') ?>
                                        </div>
                                        <div class="form-group">
@@ -98,8 +109,16 @@ $cakeDescription = 'Classera Manual';
                                  } else {
                                   ?>
                                    <div id="login_header_info">
-                                     <span class="glyphicons glyphicons-log-out"></span>
-                                  <?php   echo "Welcome :  " . $this->request->session()->read('Auth.User.username'); ?>
+                                     <span class="fa fa-user-circle" aria-hidden="true"></span>
+                                  <?php   echo $this->request->session()->read('Auth.User.username');?>
+
+
+                              <a href="<?=$this->Url->build(["controller" => "users","action" => "logout"]);?>"><i class='fa fa-sign-out' aria-hidden="true"></i></a>
+
+
+                                          </span>
+
+
 
                                    </div>
                                    <?php
@@ -148,42 +167,60 @@ $cakeDescription = 'Classera Manual';
     <path d="M 4 4 L 4 5 L 4 27 L 4 28 L 5 28 L 27 28 L 28 28 L 28 27 L 28 5 L 28 4 L 27 4 L 5 4 L 4 4 z M 6 6 L 26 6 L 26 26 L 6 26 L 6 6 z M 16 8.40625 L 13.6875 13.59375 L 8 14.1875 L 12.3125 18 L 11.09375 23.59375 L 16 20.6875 L 20.90625 23.59375 L 19.6875 18 L 24 14.1875 L 18.3125 13.59375 L 16 8.40625 z M 16 13.3125 L 16.5 14.40625 L 17 15.5 L 18.1875 15.59375 L 19.40625 15.6875 L 18.5 16.5 L 17.59375 17.3125 L 17.8125 18.40625 L 18.09375 19.59375 L 17 19 L 16 18.40625 L 15 19 L 14 19.59375 L 14.3125 18.40625 L 14.5 17.3125 L 13.59375 16.5 L 12.6875 15.6875 L 13.90625 15.59375 L 15.09375 15.5 L 15.59375 14.40625 L 16 13.3125 z" />
   </symbol>
 </svg>
-                  <br>
-                  <div class="left-navigation">
+<br>
+      <div class="left-navigation">
+        <ul  class="list">
+          <?php
+          tree($articles,$this->Html);
+                function tree($articles, $link)
+          {
+            ?>
 
-                      <ul class="list">
 
-                        <?php foreach ($articles as $article): ?>
+            <?php
+            foreach ($articles as  $article){ ?>
+             <li class="categoryName">
+
+            <?= $link->link($article->category->name, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) ?>
+             </li>
+           <?php } ?>
+           <?php
+          }
+          ?>
+      </ul>
 
 
-                         <li><?= $article->has('category') ? $this->Html->link($article->category->name, ['controller' => 'Categories', 'action' => 'view', $article->category->id]):'' ?></li>
 
-                         <li>
-
-                           <?= $this->Html->link($article->title, ['controller' => 'Articles','action' => 'view', $article->id]) ?>
-                         </li>
-                      </ul>
-
-                       <?php endforeach; ?>
-                       <?php unset($list); ?>
-
-                        <div id="treeview4" class=""></div>
-                  </div>
+      </div>
               </div>
 
               <div class="col-md-10 col-sm-8 main-content">
                 <?= $this->Flash->render() ?>
-                <div class="container clearfix">
+                <div id="tree">
+
+                </div>
+                <div class="container clearfix" id="main-container">
                   <div class="container-fluid">
-                      <?= $this->fetch('content') ?>
+                      <?= $this->fetch('content')?>
                   </div>
 
                 </div>
           </div>
       </div>
+      <hr>
+      <footer class="sidebarFooter">
+        <p class="copyright">Classera &copy; 2017</p>
+        <div class="socialicon">
+
+        <a href="https://www.instagram.com/ClasseraMe/" target="_blank" class="fa fa-instagram fa-2x"></a>
+         <a href="https://twitter.com/ClasseraMe" target="_blank" class="fa fa-twitter-square fa-2x"></a>
+        <a href="https://www.facebook.com/ClasseraMe/" target="_blank" class="fa fa-facebook-official fa-2x"></a>
+
+
+        </div>
+      </footer>
 </div>
-    <footer>
-    </footer>
+
 </body>
 
 </html>
