@@ -18,16 +18,16 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-     public $components = array(
- 		'Search.Prg'
- 	);
+
+
 
 
      public function initialize()
 {
     parent::initialize();
     // Add the 'add' action to the allowed actions list.
-    $this->Auth->allow(['logout', 'add']);
+    $this->Auth->allow(['logout']);
+    $this->Auth->deny(['index']);
 }
 
     public function index()

@@ -1,6 +1,5 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\Event\Event;
 
@@ -26,7 +25,7 @@ class ArticlesController extends AppController
         {
           parent::initialize();
 
-                  $this->loadComponent('Flash');
+            $this->loadComponent('Flash');
         }
 
      public function beforeFilter(Event $event)

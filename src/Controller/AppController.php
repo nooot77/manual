@@ -21,8 +21,7 @@ use Cake\Core\Configure;
 
 class AppController extends Controller
 {
-  // public $layout = 'Bootstrap.default';
-  use \Crud\Controller\ControllerTrait;
+
 
   public $helpers = [
       'Less.Less', // required for parsing less files
@@ -36,11 +35,7 @@ class AppController extends Controller
 
   ];
 
-  public $components = [
-     'Acl' => [
-         'className' => 'Acl.Acl'
-     ]
- ];
+
 
     public function initialize()
     {
@@ -78,23 +73,14 @@ class AppController extends Controller
                 // continues to work. Also enable the read only actions.
                 $this->Auth->allow(['display', 'view', 'index']);
 
-                $this->loadComponent('Crud.Crud', [
-               'actions' => [
-                 'Crud.Index',
-               'Crud.Add',
-               'Crud.Edit',
-               'Crud.View',
-               'Crud.Delete'
-               ]
-           ]);
 
     }
     public function isAuthorized($user = null)
        {
            // Any registered user can access public functions
-           if (!$this->request->getParam('prefix')) {
-               return true;
-           }
+           // if (!$this->request->getParam('prefix')) {
+           //     return true;
+           // }
 
            // Only admins can access admin functions
            if ($this->request->getParam('prefix') === 'admin') {
@@ -156,6 +142,7 @@ class AppController extends Controller
 //$this->viewBuilder()->theme('AdminLTE');
 //$this->set('theme', Configure::read('Theme'));
     }
+
 
 
 }

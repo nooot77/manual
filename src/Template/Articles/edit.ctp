@@ -24,7 +24,7 @@
         <legend><?= __('Edit Article') ?></legend>
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->control('body');
+            echo $this->Ck->input('body');
             echo $this->Form->control('category_id', ['options' => $categories]);
         ?>
     </fieldset>

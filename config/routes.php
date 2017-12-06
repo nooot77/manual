@@ -42,7 +42,11 @@ use Cake\Routing\Route\DashedRoute;
  *
  */
 Router::defaultRouteClass(DashedRoute::class);
-
+Router::extensions(['json', 'xml']);
+Router::prefix('api', function ($routes) {
+    $routes->extensions(['json', 'xml']);
+    $routes->resources('Articles');
+});
 Router::scope('/', function (RouteBuilder $routes) {
 //Router::extensions(['pdf']);
     /**
@@ -50,6 +54,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
+
+
     $routes->connect('/', ['controller' => 'Articles', 'action' => 'index']);
 
     /**
@@ -78,11 +84,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 
-Router::scope('/pdf_download/:id', function (RouteBuilder $routes) {
-    $routes->addExtensions(['pdf']);
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'cakePdfDownload']);
 
-});
 
 
 

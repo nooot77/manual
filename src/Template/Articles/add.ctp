@@ -19,13 +19,13 @@
         <legend><?= __('Add Article') ?></legend>
 
         <?php
+
             echo $this->Form->control('title');
-
-
+            echo $this->Form->control('category_id', ['options' => $categories]);
             echo $this->Ck->input('body');
 
 
-            echo $this->Form->control('category_id', ['options' => $categories]);
+
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -4,27 +4,13 @@
  * @var \App\Model\Entity\Article[]|\Cake\Collection\CollectionInterface $articles
  */
 ?>
-<!-- Navigation -->
+<?php
 
-<div class="articlesnav">
+$isAuth=$this->request->session()->read('Auth.User.username');
+$cakeDescription = 'Classera Manual';
+?>
 
 
-   <ul class="navbar-nav ">
-     <li class="nav-item ">
-
-     </li>
-     <li class="nav-item">
-
-     </li>
-     <li class="nav-item">
-
-     </li>
-     <li class="nav-item">
-
-     </li>
-   </ul>
-
-</div>
 
       <div class="row">
 
@@ -33,44 +19,49 @@
         <!-- Post Content Column -->
         <div class="col-lg-14">
          <!-- Category name -->
-            <h2 class="fa fa-caret-down fa-lg" aria-hidden="true">
-                 <?= $article->has('category') ? $this->Html->link($article->category->name, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?>
-             </h2>
+         <span id="categoryTilte" class="fa fa-caret-down fa-lg" aria-hidden="true">
+              <?= $article->has('category') ? $this->Html->link($article->category->name, ['controller' => 'Categories', 'action' => 'view', $article->category->id],['id'=>'categoryName']) : '' ?>
+          </span>
 
             <br>
           <!-- Title -->
-          <h2 class="fa fa-link fa-lg" aria-hidden="true">
-          <?= h($article->title) ?>
-          </h2>
-        <div class="articlesAction">
-          <ul>
-            <li>
-              <a href="<?=$this->Url->build(["action" => "View", $article->id]);?>"><i class="fa fa-eye " aria-hidden="true"></i></a>
-            </li>
-            <li>
-              <a href="<?=$this->Url->build(["action" => "edit", $article->id]);?>"><i class='fa fa-pencil'></i></a>
-            </li>
-            <li>
-              <a href="<?=$this->Url->build(["action" => "delete", $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]);?>"><i class="fa fa-trash-o " aria-hidden="true"></i></a>
-            </li>
-            <li class="articleDate">
-                Created:<?= h($article->created) ?>
-            </li>
-          <li class="articleDate">
-              Modified:<?= h($article->modified) ?>
-          </li>
 
-          </ul>
+          <span  id="articleTitle" class="fa fa-link fa-2x" aria-hidden="true">
+          <?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->id],['id'=>'articleName']) ?>
+        </span>
+        <div class="articlesAction">
+          <?php if ($isAuth): ?>
+            <ul>
+              <li>
+                <a href="<?=$this->Url->build(["action" => "View", $article->id]);?>"><i class="fa fa-eye " aria-hidden="true"></i></a>
+              </li>
+              <li>
+                <a href="<?=$this->Url->build(["action" => "edit", $article->id]);?>"><i class='fa fa-pencil'></i></a>
+              </li>
+              <li>
+                <a href="<?=$this->Url->build(["action" => "delete", $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]);?>"><i class="fa fa-trash-o " aria-hidden="true"></i></a>
+              </li>
+              <li class="articleDate">
+                  Created:<?= h($article->created) ?>
+              </li>
+            <li class="articleDate">
+                Modified:<?= h($article->modified) ?>
+            </li>
+
+            </ul>
+          <?php endif; ?>
+
         </div>
 
 
           <br>
+          <br>
 
           <!-- Post Content -->
-          <p class="lead">
-                        <?= $this->Text->autoParagraph(($article->body)); ?>
-          </p>
-<hr>
+          <div class="lead">
+              <?= $this->Text->autoParagraph(($article->body)); ?>
+          </div>
+<hr class="articledevider">
           <?php endforeach; ?>
 
         </div>

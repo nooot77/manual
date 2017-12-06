@@ -20,7 +20,7 @@ $cakeDescription = 'Classera Manual';
 
 <?= $this->Html->css('sidebar.css') ?>
 <?= $this->Html->css('cake.css') ?>
-
+<?= $this->Html->css('login.css') ?>
 
 
       <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')?>
@@ -50,9 +50,6 @@ $cakeDescription = 'Classera Manual';
   <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
       <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand">
        <div class="classeraimg">
@@ -66,6 +63,7 @@ $cakeDescription = 'Classera Manual';
 
        </div>
     </a>
+
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -81,7 +79,12 @@ $cakeDescription = 'Classera Manual';
                                  if (!$isAuth) {
                                  ?>
                                  <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="fa fa-sign-in " aria-hidden="true"></b></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+
+                                     <h1 class="singintag"> Sing In
+                                     <span class="fa fa-sign-in " aria-hidden="true"></span>
+                                   </h1>
+                                     </a>
                                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                                        <li>
                                           <div class="row">
@@ -132,8 +135,13 @@ $cakeDescription = 'Classera Manual';
 
                         </ul>
                      </li>
+
+
                   </ul>
-  			</div>
+                   <ul class="list">
+                  <li>test</li>
+                    </ul>
+  			        </div>
   </div><!-- /.navbar-collapse -->
     </div>
 </nav>
@@ -179,7 +187,7 @@ $cakeDescription = 'Classera Manual';
 
             <?php
             foreach ($articles as  $article){ ?>
-             <li class="categoryName">
+             <li class="sidebar_categoryName">
 
             <?= $link->link($article->category->name, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) ?>
              </li>
@@ -194,13 +202,14 @@ $cakeDescription = 'Classera Manual';
       </div>
               </div>
 
-              <div class="col-md-10 col-sm-8 main-content">
-                <?= $this->Flash->render() ?>
-                <div id="tree">
 
-                </div>
+              <div class="col-md-10 main-content">
+
+
                 <div class="container clearfix" id="main-container">
+                     <?= $this->Flash->render() ?>
                   <div class="container-fluid">
+
                       <?= $this->fetch('content')?>
                   </div>
 

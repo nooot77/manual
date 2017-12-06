@@ -1,8 +1,17 @@
+<?php
+
+$isAuth=$this->request->session()->read('Auth.User.username');
+$cakeDescription = 'Classera Manual';
+?>
+
 <div class="actions large-2 medium-3 columns">
+  <?php if ($isAuth):'' ?>
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('New Category'), ['action' => 'add']) ?></li>
     </ul>
+  <?php endif; ?>
+
 </div>
 
 <div class="categories index large-10 medium-9 columns">
@@ -11,8 +20,6 @@
         <tr>
             <th>Id</th>
             <th>Parent Id</th>
-            <th>Lft</th>
-            <th>Rght</th>
             <th>Name</th>
             <th>Description</th>
             <th>Created</th>
@@ -25,8 +32,6 @@
         <tr>
             <td><?= $category->id ?></td>
             <td><?= $category->parent_id ?></td>
-            <td><?= $category->lft ?></td>
-            <td><?= $category->rght ?></td>
             <td><?= h($category->name) ?></td>
             <td><?= h($category->description) ?></td>
             <td><?= h($category->created) ?></td>
