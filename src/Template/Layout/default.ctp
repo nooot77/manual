@@ -23,7 +23,7 @@ $cakeDescription = 'Classera Manual';
 <?= $this->Html->css('login.css') ?>
 
 
-      <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')?>
+      <?= $this->Html->script('jQuery.js')?>
 
 
       <?= $this->Html->script('sidebar.js')?>
@@ -138,9 +138,22 @@ $cakeDescription = 'Classera Manual';
 
 
                   </ul>
-                   <ul class="list">
-                  <li>test</li>
-                    </ul>
+                  <?php
+
+                  if ($isAuth) {
+                  ?>
+                  <nav>
+           <ul class="nav nav-justified">
+               <li><?= $this->Html->link(__('Articles'), ['controller' => 'Articles', 'action' => 'index']) ?> </li>
+                 <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?> </li>
+              <li><?= $this->Html->link(__('Categories'), ['controller' => 'Categories','action' => 'index']) ?> </li>
+              <li><?= $this->Html->link(__('Users'), ['controller' => 'Users','action' => 'index']) ?> </li>
+
+
+
+           </ul>
+         </nav>
+       <?php }  ?>
   			        </div>
   </div><!-- /.navbar-collapse -->
     </div>

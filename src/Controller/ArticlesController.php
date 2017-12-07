@@ -98,6 +98,7 @@ class ArticlesController extends AppController
      */
     public function edit($id = null)
     {
+
         $article = $this->Articles->get($id, [
             'contain' => []
         ]);
@@ -124,7 +125,7 @@ class ArticlesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       $this->request->allowMethod(['post', 'delete']);
         $article = $this->Articles->get($id);
         if ($this->Articles->delete($article)) {
             $this->Flash->success(__('The article has been deleted.'));
