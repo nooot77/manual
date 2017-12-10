@@ -22,11 +22,11 @@
     </legend>
     <fieldset>
         <?php
-            echo $this->Form->control('title',['type'=>'text','label'=>'Title','placeholder'=>'Title','class'=>'editTitle']);
+            echo $this->Form->control('title',['type'=>'text','label'=>false,'placeholder'=>'Title','class'=>'editTitle']);
             echo $this->Ck->input('body',['label'=>'']);
             echo $this->Form->control('category_id', ['options' => $categories,'label'=>'Select Category','class'=>'form-control']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit',['class'=>'submitButtom'])) ?>
+    <?= $this->Form->button('Submit',['id'=>'submitButtom']) ?>
     <?= $this->Form->end() ?>
 </div>

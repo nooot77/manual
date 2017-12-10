@@ -31,6 +31,7 @@ class AppController extends Controller
       'BootstrapUI.Paginator',
       'CkEditor.Ck',
       'FontAwesome.Fa',
+      'AkkaCKEditor.CKEditor',
 
 
   ];

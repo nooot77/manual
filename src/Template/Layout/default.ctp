@@ -30,6 +30,7 @@ $cakeDescription = 'Classera Manual';
     <?= $this->Html->script('bootstrap.js')?>
 
   <!--  // $this->Html->css('base.css')  -->
+  <?php echo $this->CKEditor->loadJs(); ?>
 
     <?php $this->fetch('fonts') ?>
     <?= $this->fetch('meta') ?>
@@ -147,6 +148,7 @@ $cakeDescription = 'Classera Manual';
                <li><?= $this->Html->link(__('Articles'), ['controller' => 'Articles', 'action' => 'index']) ?> </li>
                  <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?> </li>
               <li><?= $this->Html->link(__('Categories'), ['controller' => 'Categories','action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Catego'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
               <li><?= $this->Html->link(__('Users'), ['controller' => 'Users','action' => 'index']) ?> </li>
 
 

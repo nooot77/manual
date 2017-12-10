@@ -235,3 +235,4 @@ Plugin::load('CkEditor');
 Plugin::load('Froala');
 Plugin::load('FontAwesome');
 Plugin::load('TreeHelper');
+Plugin::load('AkkaCKEditor', ['bootstrap' => false, 'routes' => true]);

@@ -451,7 +451,7 @@ margin-left: 200px;
 
 
 .editTitle{
-  margin-left: 200px;
+  margin-left: 250px;
   width: 250px;
   padding: 9px;
  text-align: center;
@@ -460,8 +460,7 @@ margin-left: 200px;
  border-radius: 20px;
 color: #b6003c;
 background-color: #d4d4d4;
- border-color: black;
- border: 10px;
+ border: 0.5px solid black;
 }
 #category-id{
 
@@ -473,4 +472,53 @@ background-color: #d4d4d4;
   color: white;
   font-weight: bold;
 
+}
+.articleTitleinput{
+  width: 300px;
+  text-align: center;
+  color: #ab0436;
+  font-weight: bold;
+  font-size: 18px;
+   border: 0.5px solid black;
+   border-radius: 20px;
+   margin-left: 300px;
+
+
+}
+.addArticleheader{
+  text-align: center;
+  font-variant-caps:all-petite-caps;
+
+
+}
+#jumbotronArticle{
+  border-radius: 50px;
+  color: #E34242;
+
+}
+:required  {
+background: url(https://cdn0.iconfinder.com/data/icons/fugue/icon/asterisk-small.png) no-repeat;
+background-position: right center;
+}
+#selectcategory{
+  width: 300px;
+  text-align: center;
+  color: #ab0436;
+  font-weight: bold;
+  font-size: 18px;
+   border: 0.5px solid black;
+   border-radius: 20px;
+   margin-left: 190px;
+   margin-top: 20px;
+}
+#selectcategory option{
+  text-align: center;
+}
+#submitButtom{
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 50px;
+  margin-right: 490px;
+margin-bottom: 20px;
 }
