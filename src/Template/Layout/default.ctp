@@ -57,9 +57,14 @@ $cakeDescription = 'Classera Manual';
 
 
 <?php echo $this->Html->image("classera_white.png", [
+  'class'=>'pwr',
+  'style'=>'border:0;',
     "alt" => "Classera",
     'url' => ['controller' => 'Articles', 'action' => 'index']
 ]); ?>
+<span class="triangle small"></span>
+<span class="triangle medium"></span>
+<span class="triangle large"></span>
 
 
        </div>
@@ -86,7 +91,7 @@ $cakeDescription = 'Classera Manual';
                                      <span class="fa fa-sign-in " aria-hidden="true"></span>
                                    </h1>
                                      </a>
-                                    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                                    <ul class="dropdown-menu" style="padding: 15px;">
                                        <li>
                                           <div class="row">
 
@@ -96,14 +101,14 @@ $cakeDescription = 'Classera Manual';
 
                                        <div class="form-group">
 
-                                        <?= $this->Form->control('username') ?>
+                                        <?= $this->Form->control('username',['label'=>false,'placeholder'=>'Username','class'=>'loginNav']) ?>
                                        </div>
                                        <div class="form-group">
-                                        <?= $this->Form->control('password') ?>
+                                        <?= $this->Form->control('password',['label'=>false,'placeholder'=>'Password','class'=>'loginNav']) ?>
                                        </div>
 
                                        <div class="form-group">
-                                        <?= $this->Form->button('Login') ?>
+                                        <?= $this->Form->button('Login',['id'=>'submitNav','class'=>'btn btn-default  btn-sm']) ?>
                                         <?= $this->Form->end() ?>
                                        </div>
                                     </form>
@@ -145,14 +150,21 @@ $cakeDescription = 'Classera Manual';
                   ?>
                   <nav>
            <ul class="nav nav-justified">
-               <li><?= $this->Html->link(__('Articles'), ['controller' => 'Articles', 'action' => 'index']) ?> </li>
-                 <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?> </li>
+              <li><?= $this->Html->link(__('Articles'), ['controller' => 'Articles', 'action' => 'index']) ?> </li>
               <li><?= $this->Html->link(__('Categories'), ['controller' => 'Categories','action' => 'index']) ?> </li>
-                <li><?= $this->Html->link(__('New Catego'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
               <li><?= $this->Html->link(__('Users'), ['controller' => 'Users','action' => 'index']) ?> </li>
-
-
-
+            <li>     <div class="btn-group ">
+                    <button type="button" class="btn btn-default dropdown-toggle navdropdown" data-toggle="dropdown">
+                      Add <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" >
+                      <li role="presentation" class="dropdown-header">Article</li>
+                      <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?> </li>
+                      <li role="presentation" class="dropdown-header">Category</li>
+                      <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
+                    </ul>
+                  </div>
+                </li>
            </ul>
          </nav>
        <?php }  ?>

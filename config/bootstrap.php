@@ -236,3 +236,4 @@ Plugin::load('Froala');
 Plugin::load('FontAwesome');
 Plugin::load('TreeHelper');
 Plugin::load('AkkaCKEditor', ['bootstrap' => false, 'routes' => true]);
+Plugin::load('Cake/ElasticSearch', ['bootstrap' => true]);

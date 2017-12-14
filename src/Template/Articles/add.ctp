@@ -15,7 +15,7 @@
 
         <?php
 
-            echo $this->Form->control('title',['label'=>false,'placeholder'=>'Title','class'=>'articleTitleinput','required'=>'true','div'=>'false']);
+            echo $this->Form->control('title',['label'=>false,'placeholder'=>'Title','class'=>'titleinput','required'=>'true','div'=>'false']);
 
             echo $this->Ck->input('body',['label'=>false]);
             echo $this->Form->control('category_id', ['options' => $categories,'label'=>'Select Category','id'=>'selectcategory']);
@@ -25,6 +25,7 @@
         ?>
           <?= $this->Form->button('Submit',['id'=>'submitButtom']) ?>
     </fieldset>
+
 
     <?= $this->Form->end() ?>
 </div>

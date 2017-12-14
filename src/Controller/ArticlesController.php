@@ -33,7 +33,7 @@ class ArticlesController extends AppController
 
      parent::beforeFilter($event);
      // Load the Type using the 'Elastic' provider.
-    // $this->loadModel('Articles', 'Elastic');
+   //$this->loadModel('Articles', 'Elastic');
  }
 
     public function index($search = null)
